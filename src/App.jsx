@@ -22,19 +22,19 @@ function App() {
 
   return (
     <>
-    <Profile />
+    {/* <Profile /> */}
       {/* <Navbar/> */}
       {/* <Testing/> */}
-      {/* <Routes>
-        <Route path="/" element={<Login/>}/> 
+      <Routes>
+        {/* <Route path="/" element={<Login/>}/> 
         <Route path="/dashboard" element={<HomePage/>} />
         <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
         <Route path="/dampak" element={<FetchDampak/>}/>
-        <Route path="/register" element={<Register/>}/> 
+        <Route path="/register" element={<Register/>}/>  */}
         <Route path='/profile' element={<Profile/>}/>
-        <Route path='/editprofile' element={<EditProfile/>}/>
+        {/* <Route path='/editprofile/:id' element={<EditProfile/>}/> */}
       </Routes>
-      <Footer/> */}
+      <Footer/>
     </>
   
     )

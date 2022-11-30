@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom/dist";
 const EditProfile = () => {
     const [namaDepan, setNamaDepan] = useState("");
     const [namaBelakang, setNamaBelakang] = useState("");
@@ -8,7 +9,11 @@ const EditProfile = () => {
     const [jenisKelamin, setJenisKelamin] = useState("");
     const [noHp, setNoHp] = useState("");
     const [alamat, setAlamat] = useState("");
-  
+    const navigation = useNavigate()
+    const {id} =useParams()
+  useEffect(()=>{
+    getUserById()
+  },[])
     const handleNamaDepan = (e) => {
       setNamaDepan(e.target.value);
     };
@@ -59,6 +64,17 @@ const EditProfile = () => {
           console.log(result.data);
         });
     };
+    const getUserById = async()=>{
+      const response = await axios.get(`https://63528ae6a9f3f34c37409536.mockapi.io/profile/${id}`);
+      setNamaDepan(response.data.namaDepan);
+      setNamaBelakang(response.data.namaBelakang);
+      setEmail(response.data.email);
+      setPassword(response.data.password);
+      setJenisKelamin(response.data.jenisKelamin);
+      setNoHp(response.data.noHp);
+      setAlamat(response.data.alamat);
+
+    }
     return (
       <>
         <section className="bg-EditProfile">
