@@ -15,6 +15,8 @@ import Login from "./Components/Logres/Login";
 import Register from "./Components/Logres/Register";
 import FetchDampak from './Components/Dampak/FetchDampak'
 import ProtectedRoutes from './ProtectedRoutes'
+import AdminPage from './admin/AdminPage'
+import AdminCrud from './admin/AdminCrud'
 // import Forum from './Pages/Forum'
 // import './css/style-penanggulangan.css'
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
           <Route path="/dampak" element={<FetchDampak/>}/>
         </Route>
+        <Route path="/admin" element={<AdminPage/>}/>
+        <Route path="/admin-crud" element={<AdminCrud/>}/>
         {/* <Route path="/forum" element={<Forum/>}/>  */}
       </Routes>
       <Footer/>

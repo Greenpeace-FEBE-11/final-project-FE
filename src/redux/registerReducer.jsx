@@ -4,14 +4,14 @@ import axios from "axios";
 export const registerReducer = ( username, email, password1, password2) => {
     return () => {
 
-    axios("https://testvoluntegreen.onrender.com/signup", {
+    axios("https://63528ae6a9f3f34c37409536.mockapi.io/logres", {
         username: username,
         email: email,
         password: password2,
       }) 
       .then(() => {
         if (password1 == password2) {
-          axios.post("https://testvoluntegreen.onrender.com/signup", {
+          axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/logres", {
             username: username,
             email: email,
             password: password2,
