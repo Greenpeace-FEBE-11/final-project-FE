@@ -47,10 +47,12 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      await axios.post('https://testvoluntegreen.onrender.com/signin', {
+      await axios.post('https://voluntegreen.onrender.com/signin', {
         email: email,
         password: password
       });
+      localStorage.setItem("account", email);
+      // localStorage.setItem("pass", password);
       navigation("/dashboard");
     }catch(error){
       

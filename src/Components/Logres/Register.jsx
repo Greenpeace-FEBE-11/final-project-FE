@@ -33,7 +33,7 @@ const Register = () => {
        e.preventDefault();
 
       try {
-        await axios.post('https://testvoluntegreen.onrender.com/signup', {
+        await axios.post('https://voluntegreen.onrender.com/signup', {
           
             username: username,
             email: email,

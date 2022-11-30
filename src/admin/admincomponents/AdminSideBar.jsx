@@ -8,7 +8,7 @@ function AdminSideBar() {
 
     const HandleLogout = (e) => {
         e.preventDefault()
-        // localStorage.removeItem("account")
+        localStorage.removeItem("account")
         // window.location.reload()
         navigation(`/`)
     };
@@ -81,8 +81,7 @@ function AdminSideBar() {
             <hr className="sidebar-divider d-none d-md-block"/>
             <hr className="sidebar-divider d-none d-md-block"/>
             <hr className="sidebar-divider d-none d-md-block"/>
-            <hr className="sidebar-divider d-none d-md-block"/>
-            <hr className="sidebar-divider d-none d-md-block"/>
+            
 
 
             {/* <!-- Sidebar Message --> */}

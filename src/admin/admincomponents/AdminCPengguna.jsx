@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 
 
 function AdminCPengguna() {
-    const api_url = "https://testvoluntegreen.onrender.com/users";
+    const api_url = "https://voluntegreen.onrender.com/admin";
     const [apiUser, setApiUser] = useState([])
     const {_id} = useParams()
     
 
     const getUsersBE = async () => {
-         axios.get('https://testvoluntegreen.onrender.com/users')
+         axios.get(api_url)
         .then(res => 
         setApiUser(res.data.data),
         // console.log(res.data.data)

@@ -23,7 +23,7 @@ function AdminDashboard() {
     //   }, []);
 
     const getUsersBE = async () => {
-        axios.get('https://testvoluntegreen.onrender.com/users')
+        axios.get('https://voluntegreen.onrender.com/admin')
        .then(res => 
        setTotalSum(res.data.data.length)
 
