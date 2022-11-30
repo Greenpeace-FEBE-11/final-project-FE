@@ -14,7 +14,7 @@ const Profile = () => {
   const [jenisKelamin, setJenisKelamin] = useState("");
   const [noHp, setNoHp] = useState("");
   const [alamat, setAlamat] = useState("");
-  const {id} = useParams();
+  const { id } = useParams();
 
   const handleNamaDepan = (e) => {
     setNamaDepan(e.target.value);
@@ -67,92 +67,101 @@ const Profile = () => {
   };
   return (
     <>
-    <Navbar/>
-      <section className="bg-EditProfile">
-        <div className="form-profile">
-          <div>
-            <h2>
-              Hello, {namaDepan} {namaBelakang}
-            </h2>
+      <Navbar />
+      <div className="bg-EditProfile">
+        <section>
+          <div style={{ backgroundColor: "white", width:"900px", borderRadius:"4px",height:"40px"}}>
+            <h3>&nbsp; Profile</h3>
           </div>
-          <div className="col">
-            <form id="form">
-              <div className="row justify-content-center">
+          <div className="form-profile">
+            <div>
+              <h2>
+                Hello, {namaDepan} {namaBelakang}
+              </h2>
+            </div>
+            <div className="col">
+              <form id="form">
+                <div className="row justify-content-center">
+                  <div className="col">
+                    <label className="form-label">Nama Depan</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={namaDepan}
+                      onChange={handleNamaDepan}
+                    />
+                  </div>
+
+                  <div className="col">
+                    <label className="form-label">Nama Belakang</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={namaBelakang}
+                      onChange={handleNamaBelakang}
+                    />
+                  </div>
+                </div>
+
+                <div className="row justify-content-center">
+                  <div className="col">
+                    <label className="form-label">Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      value={email}
+                      onChange={handleEmail}
+                    />
+                  </div>
+
+                  <div className="col">
+                    <label className="form-label">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password-login"
+                      value={password}
+                      onChange={handlePassword}
+                    />
+                  </div>
+                </div>
+
+                <div className="row justify-content-center">
+                  <div className="col">
+                    <label className="form-label">Nomor Telepon(HP)</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      value={noHp}
+                      onChange={handleNoHp}
+                    />
+                  </div>
+                  <div className="col">
+                    <label className="form-label">Jenis Kelamin</label>
+                    <select
+                      className="jk"
+                      value={jenisKelamin}
+                      onChange={handleJenisKelamin}
+                    >
+                      <option value=""></option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="col">
-                  <label className="form-label">Nama Depan</label>
+                  <label className="form-label">Alamat</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={namaDepan}
-                    onChange={handleNamaDepan}
+                    value={alamat}
+                    onChange={handleAlamat}
                   />
                 </div>
-
-                <div className="col">
-                  <label className="form-label">Nama Belakang</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={namaBelakang}
-                    onChange={handleNamaBelakang}
-                  />
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    value={email}
-                    onChange={handleEmail}
-                  />
-                </div>
-
-                <div className="col">
-                  <label className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password-login"
-                    value={password}
-                    onChange={handlePassword}
-                  />
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col">
-                  <label className="form-label">Nomor Telepon(HP)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={noHp}
-                    onChange={handleNoHp}
-                  />
-                </div>
-                <div className="col">
-                  <select className="jk" value={jenisKelamin} onChange={handleJenisKelamin}>
-                    <option value="">Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col">
-                <label className="form-label">Alamat</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={alamat}
-                  onChange={handleAlamat}
-                />
-              </div>
-              <div className="text-center d-grid gap-2">
-                <br />
-                <Link to={"/editprofile"}/>
+                <div className="text-center d-grid gap-2">
+                  <br />
+                  <Link to={"/editprofile"} />
                   <button
                     type="submit"
                     className="btn btn-success"
@@ -160,12 +169,12 @@ const Profile = () => {
                   >
                     Edit
                   </button>
-                
-              </div>
-            </form>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 };

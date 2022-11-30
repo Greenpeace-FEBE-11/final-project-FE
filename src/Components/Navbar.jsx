@@ -119,6 +119,7 @@ function Navbar() {
                   className="nav-link navmenu"
                 >
                   <img src="img/avatar.png" width="60" />
+                  Akun
                 </Link>
               </li>
             </ul>

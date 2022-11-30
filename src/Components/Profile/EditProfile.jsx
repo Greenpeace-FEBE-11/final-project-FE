@@ -1,4 +1,5 @@
-
+import { useState } from "react";
+import axios from "axios";
 const EditProfile = () => {
     const [namaDepan, setNamaDepan] = useState("");
     const [namaBelakang, setNamaBelakang] = useState("");
@@ -74,7 +75,7 @@ const EditProfile = () => {
                     <label className="form-label">Nama Depan</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input-profile"
                       value={namaDepan}
                       onChange={handleNamaDepan}
                     />
@@ -84,7 +85,7 @@ const EditProfile = () => {
                     <label className="form-label">Nama Belakang</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input-profile"
                       value={namaBelakang}
                       onChange={handleNamaBelakang}
                     />
@@ -96,7 +97,7 @@ const EditProfile = () => {
                     <label className="form-label">Email</label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control input-profile"
                       value={email}
                       onChange={handleEmail}
                     />
@@ -106,7 +107,7 @@ const EditProfile = () => {
                     <label className="form-label">Password</label>
                     <input
                       type="password"
-                      className="form-control"
+                      className="form-control input-profile"
                       id="password-login"
                       value={password}
                       onChange={handlePassword}
@@ -119,14 +120,15 @@ const EditProfile = () => {
                     <label className="form-label">Nomor Telepon(HP)</label>
                     <input
                       type="number"
-                      className="form-control"
+                      className="form-control input-profile"
                       value={noHp}
                       onChange={handleNoHp}
                     />
                   </div>
                   <div className="col">
+                    <label className="form-label">Jenis Kelamin</label>
                     <select className="jk" value={jenisKelamin} onChange={handleJenisKelamin}>
-                      <option value="">Jenis Kelamin</option>
+                      <option value=""></option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
                     </select>
@@ -137,7 +139,7 @@ const EditProfile = () => {
                   <label className="form-label">Alamat</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-profile"
                     value={alamat}
                     onChange={handleAlamat}
                   />

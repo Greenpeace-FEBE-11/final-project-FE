@@ -22,10 +22,10 @@ function App() {
 
   return (
     <>
-    
+    <Profile />
       {/* <Navbar/> */}
       {/* <Testing/> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Login/>}/> 
         <Route path="/dashboard" element={<HomePage/>} />
         <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
@@ -34,7 +34,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/editprofile' element={<EditProfile/>}/>
       </Routes>
-      <Footer/>
+      <Footer/> */}
     </>
   
     )
