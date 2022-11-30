@@ -4,7 +4,7 @@ import { useEffect, useState} from "react"
 
 
 function AdminDashboard() {
-    const api_url = "https://63528ae6a9f3f34c37409536.mockapi.io/logres";
+    const api_url = "https://testvoluntegreen.onrender.com/users";
     const [apiUser, setApiUser] = useState([])
     const [totalSum, setTotalSum] = useState(0);
 
@@ -22,15 +22,18 @@ function AdminDashboard() {
     //     getData()
     //   }, []);
 
+    const getUsersBE = async () => {
+        axios.get('https://testvoluntegreen.onrender.com/users')
+       .then(res => 
+       setTotalSum(res.data.data.length)
+
+       // console.log(res.data.data)
+       )
+       .catch((err) => console.log(err))
+};
 
     useEffect(() => {
-        const data = axios(api_url).then (result => {
-            // console.log(result.data)
-            setApiUser(data)
-            // setTotalSum = result.data.length 
-            // console.log(result.data.length)
-            setTotalSum(result.data.length)
-        })
+        getUsersBE();
     }, [])
 
     // useEffect(() => {

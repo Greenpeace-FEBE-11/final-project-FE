@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 function AdminSideBar() {
+
+
+    const navigation = useNavigate();
+
+    const HandleLogout = (e) => {
+        e.preventDefault()
+        // localStorage.removeItem("account")
+        // window.location.reload()
+        navigation(`/`)
+    };
 
   return (
 
@@ -79,7 +89,7 @@ function AdminSideBar() {
             <div className="sidebar-card d-lg-flex">
                 {/* <img className="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..."/> */}
                 <p className="text-center mb-2">Thankyou, see you again!</p>
-                <a className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Logout</a>
+                <a onClick={HandleLogout} className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Logout</a>
             </div>
 
         </ul>

@@ -1,25 +1,46 @@
 import axios from 'axios';
 import React from 'react'
 import { useEffect, useState} from "react"
+import { useParams } from 'react-router-dom';
 
 
 function AdminCPengguna() {
-    const api_url = "https://63528ae6a9f3f34c37409536.mockapi.io/logres";
+    const api_url = "https://testvoluntegreen.onrender.com/users";
     const [apiUser, setApiUser] = useState([])
-    const [totalSum, setTotalSum] = useState(0);
+    const {_id} = useParams()
+    
 
+    const getUsersBE = async () => {
+         axios.get('https://testvoluntegreen.onrender.com/users')
+        .then(res => 
+        setApiUser(res.data.data),
+        // console.log(res.data.data)
+        )
+        .catch((err) => console.log(err))
+};
 
     useEffect(() => {
-        const data = axios(api_url).then (result => {
-            // console.log(result.data)
-            setApiUser(data)
-            // setTotalSum = result.data.length 
-            // console.log(result.data.length)
-            setTotalSum(result.data.length)
-        })
-    }, [])
+    //  getUsers();
+        getUsersBE();
+    }, []);
 
- 
+    // const getUsers = async () => {
+    //     // ini untuk get API mock biasa yaw
+    //     const response = await  axios.get(api_url)
+    //         console.log(response.data)
+    //         setApiUser(response.data)
+    // };
+
+    const deleteUser = async (_id) => {
+        try {
+            await axios.delete(`https://testvoluntegreen.onrender.com/signup/${_id}`)
+            getUsersBE();
+            console.log(_id)
+        } catch (err){
+            console.log(err);
+        }
+
+    }
 
     return (
     <>
@@ -34,36 +55,39 @@ function AdminCPengguna() {
 
 
         {/* <!-- /.container-fluid --> */}
-        <table class="table  table-striped-columns my-table tablee">
+        <table className="table  table-columns my-table tablee">
             <thead >
             <tr>
-                <th>No.</th>
+                <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Password</th>
+                {/* <th>Password</th> */}
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
+            {apiUser.map((item, index) => ( 
+            <tbody  key={index}>
             <tr>
-                <td>1.</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>123</td>
-                <td><a><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                <td>{item._id}</td>
+                <td>{item.username}</td>
+                <td>{item.email}</td>
+                {/* <td>123</td> */}
+                <td><a onClick={() => deleteUser(item._id)}><i className="fa fa-trash" aria-hidden="true" title='Delete Akun'></i></a></td>
                 
             </tr>
-            <tr>
+            {/* <tr>
                 <td>2.</td>
                 <td>Moe</td>
                 <td>mary@example.com</td>
                 <td>234</td>
-                <td><a><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                <td><a><i className="fa fa-trash" aria-hidden="true"></i></a></td>
 
-            </tr>
+            </tr> */}
             </tbody>
+                ))}
+
     </table>
-    
+
 </div>
 
 

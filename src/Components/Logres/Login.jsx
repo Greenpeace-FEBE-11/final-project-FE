@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HomePage from "../../Pages/HomePage";
 import { useDispatch } from "react-redux";
 import { loginReducer } from "../../redux/loginReducer";
+import axios from "axios";
 
 
 const Login = () => {
@@ -12,10 +13,18 @@ const Login = () => {
   const cekPassword = localStorage.getItem("pass");
 
   const navigation = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // const loginn = useSelector(state => state.login)
+
+      // axios.get('https://testvoluntegreen.onrender.com/users')
+      // .then(res => 
+      // // setApiUser(res.data.data),
+      // console.log(res.data.data)
+      // )
+      // .catch((err) => console.log(err))
   
 
   useEffect(()=>{
@@ -34,13 +43,24 @@ const Login = () => {
   };
 
 
-  const dispatch = useDispatch();
+  const handleBtn = async (e) => {
+    e.preventDefault()
 
-  const handleBtn = () => {
+    try {
+      await axios.post('https://testvoluntegreen.onrender.com/signin', {
+        email: email,
+        password: password
+      });
+      navigation("/dashboard");
+    }catch(error){
+      
+        alert("Mohon Check kembali data Anda.");
+      
+    }
 
-    dispatch(loginReducer(email,password))
+    // dispatch(loginReducer(email,password))
 
-    console.log("login bisa ga")
+    // console.log("login bisa ga")
     // console.log({ email, password });
     // axios.get("https://63528ae6a9f3f34c37409536.mockapi.io/logres", {
      
@@ -65,7 +85,10 @@ const Login = () => {
   
   return (
     <>
-        <section className="container-xxxl">
+    {cekEmail && cekPassword? (
+      <HomePage/>
+    ) : (
+          <div className="container-xxxl">
           <div className="row" id="logre">
           <div className="col volunteelore">
             <h1 style={{textAlign: "center", paddingLeft: "4.6rem"}}>VolunteGreen</h1>
@@ -73,9 +96,7 @@ const Login = () => {
             </div>
 
               <div className="col">
-                {cekEmail ? (
-                  <HomePage/>
-                ) : (
+                
                   <form id="form" style={{paddingLeft: "9rem"}}>
                     <br/><br/>
                     <h1 className="text-center">LOGIN</h1>
@@ -117,10 +138,11 @@ const Login = () => {
                       </Link>
                     </div>
                   </form>
-                )}
+          
               </div>
           </div>
-        </section>
+        </div>
+    )}
     </>
   );
 };

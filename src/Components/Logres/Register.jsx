@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,11 +28,31 @@ const Register = () => {
     setPassword2(e.target.value);
   };
 
-  const dispatch = useDispatch();
 
-  const handleBtn = (e) => {
+  const handleBtn = async (e) => {
        e.preventDefault();
-    dispatch(registerReducer(username, email, password1, password2))
+
+      try {
+        await axios.post('https://testvoluntegreen.onrender.com/signup', {
+          
+            username: username,
+            email: email,
+            password: password2
+          
+        });
+        navigation("/");
+        
+      }catch(err){
+        
+        
+          alert("Register Berhasil");
+      }
+  
+
+
+
+
+    // dispatch(registerReducer(username, email, password1, password2))
     console.log("woooi")
 
     // e.preventDefault();

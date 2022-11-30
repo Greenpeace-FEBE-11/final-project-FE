@@ -24,16 +24,18 @@ function App() {
 
   return (
     <>
+    
       {/* <Navbar/> */}
       {/* <Testing/> */}
       <Routes>
         <Route path="/" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
-        <Route element={<ProtectedRoutes/>}>
-          <Route path="/dashboard" element={<HomePage/>} />
+        {/* <Route element={<ProtectedRoutes/>}> */}
           <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
+          <Route path="/dashboard" element={<HomePage/>} />
+          
           <Route path="/dampak" element={<FetchDampak/>}/>
-        </Route>
+        {/* </Route> */}
         <Route path="/admin" element={<AdminPage/>}/>
         <Route path="/admin-crud" element={<AdminCrud/>}/>
         {/* <Route path="/forum" element={<Forum/>}/>  */}

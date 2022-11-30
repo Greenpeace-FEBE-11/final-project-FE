@@ -49,13 +49,13 @@
     flex-wrap: wrap;
     left: 220px;
     top: 80px;
-    border: ridge;
+    /* border: ridge; */
     padding-right: 100px;
     /* margin-left: 50px; */
 }
 
 .tablee{
-    background-color: #149063;
+    background-color: #169f6d;
     color: white;
     margin-left: 120px;
     margin-top: 50px;
