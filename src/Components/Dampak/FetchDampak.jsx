@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../Navbar";
 import "./Dampak.css";
+import Login from "../Logres/Login";
 
 const FetchDampak = () => {
   const api_url_dampaksinopsis =
@@ -37,9 +38,10 @@ const FetchDampak = () => {
 
   return (
     <>
-      {/* {!cekEmail && !cekPassword? (
+      {!cekEmail && !cekPassword? (
       <Login/>
-    ) : ( */}
+    ) : (
+    <div>
       <Navbar />
 
       <section className="home-page">
@@ -191,8 +193,9 @@ const FetchDampak = () => {
           ))}
         </div>
       </div>
+      </div>
 
-      {/* )} */}
+     )} 
     </>
   );
 };
