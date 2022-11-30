@@ -27,11 +27,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
-        {/* <Route element={<ProtectedRoutes/>}> */}
+        <Route element={<ProtectedRoutes/>}>
           <Route path="/dashboard" element={<HomePage/>} />
           <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
           <Route path="/dampak" element={<FetchDampak/>}/>
-        {/* </Route> */}
+        </Route>
         {/* <Route path="/forum" element={<Forum/>}/>  */}
       </Routes>
       <Footer/>

@@ -65,7 +65,10 @@ const Login = () => {
   
   return (
     <>
-        <section className="container-xxxl">
+    {cekEmail && cekPassword? (
+      <HomePage/>
+    ) : (
+          <div className="container-xxxl">
           <div className="row" id="logre">
           <div className="col volunteelore">
             <h1 style={{textAlign: "center", paddingLeft: "4.6rem"}}>VolunteGreen</h1>
@@ -73,9 +76,7 @@ const Login = () => {
             </div>
 
               <div className="col">
-                {cekEmail ? (
-                  <HomePage/>
-                ) : (
+                
                   <form id="form" style={{paddingLeft: "9rem"}}>
                     <br/><br/>
                     <h1 className="text-center">LOGIN</h1>
@@ -117,10 +118,11 @@ const Login = () => {
                       </Link>
                     </div>
                   </form>
-                )}
+          
               </div>
           </div>
-        </section>
+        </div>
+    )}
     </>
   );
 };
