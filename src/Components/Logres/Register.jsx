@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { registerReducer } from "../../redux/registerReducer";
+import Footer from "../Footer";
 // import { registerUser } from "../../redux/authSlice";
 // import Logo from "/public/LogresAssets/img/logo.png";
 // import gunung from "./Mountain.jpg"
@@ -160,6 +161,7 @@ const Register = () => {
       </section>
       </div>
       </div>
+      <Footer/>
     </div>
   );
 };

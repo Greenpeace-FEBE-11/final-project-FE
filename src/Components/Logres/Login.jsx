@@ -6,6 +6,7 @@ import HomePage from "../../Pages/HomePage";
 import { useDispatch } from "react-redux";
 import { loginReducer } from "../../redux/loginReducer";
 import axios from "axios";
+import Footer from "../Footer";
 
 
 const Login = () => {
@@ -52,6 +53,8 @@ const Login = () => {
         password: password
       });
       localStorage.setItem("account", email);
+      alert("Loading");
+
       // localStorage.setItem("pass", password);
       navigation("/dashboard");
     }catch(error){
@@ -145,6 +148,7 @@ const Login = () => {
           </div>
         </div>
     )}
+    <Footer/>
     </>
   );
 };

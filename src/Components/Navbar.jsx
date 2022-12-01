@@ -41,7 +41,7 @@ function Navbar() {
                     
                             <p className="nav-link dropdown-toggle navmenu " id='menuu' role="button" data-bs-toggle="dropdown" >Menu</p>
                         
-                        <ul className="dropdown-menu text-center" id='navdd' >
+                        <ul className="dropdown-menu" id='navdd' >
                             <Link  to={"/dampak"} style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Informasi Dampak<br></br>Pencemarah Lingkungan</a></li></Link><hr></hr>
                             {/* <li className="abc"><a className="dropdown-item abc" href="#">Informasi Pencegahan<br></br>Bencana</a></li><hr></hr> */}
                             <Link  to={"/pencegahan"} style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Informasi Pencegahan<br></br>Bencana</a></li>
