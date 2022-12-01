@@ -11,9 +11,11 @@ const EditProfile = () => {
     const [alamat, setAlamat] = useState("");
     const navigation = useNavigate()
     const {id} =useParams()
+
   useEffect(()=>{
     getUserById()
   },[])
+
     const handleNamaDepan = (e) => {
       setNamaDepan(e.target.value);
     };
@@ -49,7 +51,7 @@ const EditProfile = () => {
           alamat: alamat,
         })
         .then((result) => {
-          if (result.data.id == "1") {
+          if (result.data.id == id) {
             axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
               namaDepan: namaDepan,
               namaBelakang: namaBelakang,
@@ -166,7 +168,7 @@ const EditProfile = () => {
                   <button
                     type="submit"
                     className="btn btn-success"
-                    onClick={handleEdit}
+                    // onClick={handleEdit}
                   >
                     Cancel
                   </button>

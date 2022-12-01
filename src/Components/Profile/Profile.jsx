@@ -38,7 +38,7 @@ const Profile = () => {
     setAlamat(e.target.value);
   };
 
-  const handleEdit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
@@ -165,7 +165,7 @@ const Profile = () => {
                   <button
                     type="submit"
                     className="btn btn-success"
-                    onClick={handleEdit}
+                    onClick={handleSubmit}
                   >
                     Edit
                   </button>
