@@ -1,4 +1,5 @@
 import DataAboutUs from "../Components/AboutUs/DataAboutUs"
+import Footer from "../Components/Footer"
 import Navbar from "../Components/Navbar"
 
 function AboutUsPage() {
@@ -6,6 +7,7 @@ function AboutUsPage() {
             <div id="aboutUsPage">
             <Navbar/>
             <DataAboutUs/>
+            <Footer/>
             </div>
     )
 }

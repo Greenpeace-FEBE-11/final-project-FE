@@ -18,7 +18,7 @@ const DataContactUs = () => {
                     <p>Sobat VolunteGreen dapat menghubungi kami dengan mengirimkan pesan pertanyaan atau masukan kepada kami melalui Gmail dibawah ini ya !!</p>
                 </div>
 
-                <div className="row" style={{width: "100%"}}>
+                <div className="row">
                     <center>
                         <a href="mailto:voluntegreen@gmail.com?" target="blank">
                         <img src={imgGmail} className="iconGmail"/>

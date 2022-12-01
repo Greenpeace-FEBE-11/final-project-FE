@@ -1,4 +1,5 @@
 import DataContactUs from "../Components/ContactUs/dataContactUs"
+import Footer from "../Components/Footer"
 import Navbar from "../Components/Navbar"
 
 const ContactUsPage = () => {
@@ -6,6 +7,7 @@ const ContactUsPage = () => {
         <div id="contactUsPage">
             <Navbar/>
             <DataContactUs/>
+            <Footer/>
         </div>
     )
 }
