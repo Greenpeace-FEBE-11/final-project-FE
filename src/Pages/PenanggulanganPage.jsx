@@ -6,6 +6,7 @@ import DataFetching2 from "../Components/DataFetching/DataFetching2"
 import DataFetching3 from "../Components/DataFetching/DataFetching3"
 import Penanggulangan3 from "../Components/Penanggulangan/Penanggulangan3"
 import Navbar from "../Components/Navbar"
+import Footer from "../Components/Footer"
 
 // import '../css/readmore.css'
 // import '../css/style-penanggulangan.css'
@@ -20,6 +21,7 @@ const PenanggulanganPage = () => {
             <Penanggulangan2/>
             <DataFetching3/>
             <Penanggulangan3/>
+            <Footer/>
         </div>
     )
 }

@@ -44,7 +44,7 @@ function Navbar() {
                         <ul className="dropdown-menu text-center" id='navdd' >
                             <Link  to={"/dampak"} style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Informasi Dampak<br></br>Pencemarah Lingkungan</a></li></Link><hr></hr>
                             {/* <li className="abc"><a className="dropdown-item abc" href="#">Informasi Pencegahan<br></br>Bencana</a></li><hr></hr> */}
-                            <Link  to={"/penanggulangan"} style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Informasi Pencegahan<br></br>Bencana</a></li>
+                            <Link  to={"/pencegahan"} style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Informasi Pencegahan<br></br>Bencana</a></li>
                             </Link><hr></hr>
                             {/* <li className="abc"><a className="dropdown-item abc" href="#">Artikel Informasi</a></li><hr></hr> */}
                             <Link to={"/forum"}  style={{textDecoration: 'none'}}><li className="abc"><a className="dropdown-item abc">Forum</a></li></Link>

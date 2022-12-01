@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
         {/* <Route element={<ProtectedRoutes/>}> */}
-          <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
+          <Route path="/pencegahan" element={<PenanggulanganPage/>}/>
           <Route path="/dashboard" element={<HomePage/>} />
           
           <Route path="/dampak" element={<FetchDampak/>}/>
@@ -40,7 +40,7 @@ function App() {
         <Route path="/admin-crud" element={<AdminCrud/>}/>
         {/* <Route path="/forum" element={<Forum/>}/>  */}
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   
     )
