@@ -39,14 +39,11 @@ const Register = () => {
             username: username,
             email: email,
             password: password2
-          
         });
-        navigation("/");
-        
-      }catch(err){
-        
-        
-          alert("Register Berhasil");
+        alert("Register Berhasil");
+        // navigation("/");
+      }catch(error){        
+          alert("Mohon periksa kembali data Anda.");
       }
   
 
