@@ -10,12 +10,11 @@ const EditProfile = () => {
     const [noHp, setNoHp] = useState("");
     const [alamat, setAlamat] = useState("");
     const navigation = useNavigate()
-    
+    const {id} =useParams("2")
 
-  // useEffect(()=>{
-  //   getUserById()
-  // },[])
-    const token = localStorage.getItem("token")
+  useEffect(()=>{
+    getUserById()
+  },[])
 
     const handleNamaDepan = (e) => {
       setNamaDepan(e.target.value);
@@ -38,46 +37,40 @@ const EditProfile = () => {
     const handleAlamat = (e) => {
       setAlamat(e.target.value);
     };
-    const {id} =useParams()
-    console.log(id)
+    const handleCancel = (e) => {
+      navigation(`/profile`)
+    };
+  
     const handleEdit = (e) => {
       e.preventDefault();
       axios
-        .get ("https://voluntegreen.onrender.com/userprofile")
-        
+        .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
+          namaDepan: namaDepan,
+          namaBelakang: namaBelakang,
+          email: email,
+          password: password,
+          jenisKelamin: jenisKelamin,
+          noHp: noHp,
+          alamat: alamat,
+        })
         .then((result) => {
-
-          console.log(result);
-          console.log(id);
           // if (result.data.id == id) {
-            // axios.post(`https://voluntegreen.onrender.com/userprofile`, {
-            //   namaDepan: namaDepan,
-            //   namaBelakang: namaBelakang,
-            //   email: email,
-            //   password: password,
-            //   jenisKelamin: jenisKelamin,
-            //   noHp: noHp,
-            //   alamat: alamat,
-            // });
+            axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
+              namaDepan: namaDepan,
+              namaBelakang: namaBelakang,
+              email: email,
+              password: password,
+              jenisKelamin: jenisKelamin,
+              noHp: noHp,
+              alamat: alamat,
+            });
           // }
   
-          
+          console.log(result.data);
         });
     };
     const getUserById = async()=>{
-      axios(`https://voluntegreen.onrender.com/userprofile/${id}`,{
-        namaDepan: namaDepan,
-        namaBelakang: namaBelakang,
-        email: email,
-        password: password,
-        jenisKelamin: jenisKelamin,
-        noHp: noHp,
-        alamat: alamat,
-      })
-      .then((result)=>{
-        result.data.forEach((element))
-      })
-      const response = await axios.get(`https://voluntegreen.onrender.com/userprofile`);
+      const response = await axios.get(`https://63528ae6a9f3f34c37409536.mockapi.io/profile/${id}`);
       setNamaDepan(response.data.namaDepan);
       setNamaBelakang(response.data.namaBelakang);
       setEmail(response.data.email);
@@ -89,7 +82,11 @@ const EditProfile = () => {
     }
     return (
       <>
-        <section className="bg-EditProfile">
+        <div className="bg-EditProfile">
+        <section>
+          <div style={{ backgroundColor: "white", width:"900px", borderRadius:"4px",height:"40px"}}>
+            <h3>&nbsp; Profile</h3>
+          </div>
           <div className="form-profile">
             <div>
               <h2>
@@ -172,22 +169,22 @@ const EditProfile = () => {
                   />
                 </div>
 
-                <div className="text-center d-grid gap-2">
+                <div className="text-center d-grid gap-2 cancel-edit">
                   <br />
                   <button
                     type="submit"
-                    className="btn btn-success"
-                    // onClick={handleEdit}
+                    className="btn btn-success btne"
+                    onClick={handleCancel}
                   >
                     Cancel
                   </button>
                 </div>
 
-                <div className="text-center d-grid gap-2">
+                <div className="text-center d-grid gap-2 submit-edit">
                   <br />
                   <button
                     type="submit"
-                    className="btn btn-success"
+                    className="btn btn-success btne"
                     onClick={handleEdit}
                   >
                     Submit
@@ -197,6 +194,7 @@ const EditProfile = () => {
             </div>
           </div>
         </section>
+        </div>
       </>
     );
   };

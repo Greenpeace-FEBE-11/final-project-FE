@@ -31,7 +31,7 @@ function App() {
         <Route path="/penanggulangan" element={<PenanggulanganPage/>}/>
         <Route path="/dampak" element={<FetchDampak/>}/>
         <Route path="/register" element={<Register/>}/>  */}
-        {/* <Route path='/profile' element={<Profile/>}/> */}
+        <Route path='/profile/:id' element={<Profile/>}/>
         <Route path='/editprofile/:id' element={<EditProfile/>}/>
       </Routes>
       {/* <Footer/> */}

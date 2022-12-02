@@ -1,6 +1,6 @@
 import "/src/css/Profile.css";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
@@ -11,10 +11,13 @@ const Profile = () => {
   const [namaBelakang, setNamaBelakang] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState("Laki-laki");
   const [noHp, setNoHp] = useState("");
   const [alamat, setAlamat] = useState("");
-  const { id } = useParams();
+  const {id} =useParams("2")
+  useEffect(()=>{
+    getUserById()
+  },[])
 
   const handleNamaDepan = (e) => {
     setNamaDepan(e.target.value);
@@ -40,7 +43,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    navigation(`/profile/:id`)
     // axios
     //   .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
     //     namaDepan: namaDepan,
@@ -66,9 +69,20 @@ const Profile = () => {
     //     console.log(result.data);
     //   });
   };
+  const getUserById = async()=>{
+    const response = await axios.get(`https://63528ae6a9f3f34c37409536.mockapi.io/profile/${id}`);
+    setNamaDepan(response.data.namaDepan);
+    setNamaBelakang(response.data.namaBelakang);
+    setEmail(response.data.email);
+    setPassword(response.data.password);
+    setJenisKelamin(response.data.jenisKelamin);
+    setNoHp(response.data.noHp);
+    setAlamat(response.data.alamat);
+
+  }
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="bg-EditProfile">
         <section>
           <div style={{ backgroundColor: "white", width:"900px", borderRadius:"4px",height:"40px"}}>
@@ -165,7 +179,7 @@ const Profile = () => {
                   
                   <button
                     type="submit"
-                    className="btn btn-success"
+                    className="btn btn-success btne btn-edit"
                     onClick={handleSubmit}
                   ><Link to={"/editprofile"} />
                     Edit
