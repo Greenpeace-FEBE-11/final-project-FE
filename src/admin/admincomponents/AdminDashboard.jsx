@@ -4,7 +4,7 @@ import { useEffect, useState} from "react"
 
 
 function AdminDashboard() {
-    const api_url = "https://testvoluntegreen.onrender.com/users";
+    const api_url = "https://voluntegreen.onrender.com/admin";
     const [apiUser, setApiUser] = useState([])
     const [totalSum, setTotalSum] = useState(0);
 
@@ -22,15 +22,22 @@ function AdminDashboard() {
     //     getData()
     //   }, []);
 
+    // const getUsersBE = async () => {
+    //     axios.get('https://voluntegreen.onrender.com/admin')
+    //    .then(res => 
+    //    setTotalSum(res.data.data.length)
+    //    // console.log(res.data.data)
+    //    )
+    //    .catch((err) => console.log(err))
+    // };
     const getUsersBE = async () => {
-        axios.get('https://voluntegreen.onrender.com/admin')
+        axios.get(api_url)
        .then(res => 
        setTotalSum(res.data.data.length)
-
        // console.log(res.data.data)
        )
        .catch((err) => console.log(err))
-};
+    };
 
     useEffect(() => {
         getUsersBE();

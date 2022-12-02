@@ -1,22 +1,48 @@
 // import Logo from "/public/LogresAssets/img/logo.png";
 import "/src/css/Logres.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HomePage from "../../Pages/HomePage";
 import { useDispatch } from "react-redux";
-import { loginReducer } from "../../redux/loginReducer";
 import axios from "axios";
 import Footer from "../Footer";
 
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODc3MzVjMmIwYWMwYjZlMTg0ODQ2ZiIsImlhdCI6MTY2OTkwNzQxMiwiZXhwIjoxNjY5OTkzODEyfQ.OD_Cq5EZu5IoqXRgLh4McimBf8PD-x6gwnwr8JUAvKg'
+// const api_url = 'https://voluntegreen.onrender.com/signin'
+
+// axios.interceptors.request.use(
+//   config => {
+//     config.headers.authorization = `Bearer ${token}`;
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// )
 
 const Login = () => {
   const cekEmail = localStorage.getItem("account");
   const cekPassword = localStorage.getItem("pass");
+  const token = localStorage.getItem("token")
+  const roles = localStorage.getItem("roles")
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [roles, setRoles] = useState("");
+
+  const [users, setUsers] = useState([]);
+  const [requestError, setRequestError] = useState();
+
+  const fetchData = useCallback(async () => {
+    try {
+      const result = await axios.get(`${api_url}`)
+      setUsers(result.data.data)
+    } catch(err){
+      setRequestError(err.message);
+        }
+  })
 
   // const loginn = useSelector(state => state.login)
 
@@ -26,15 +52,69 @@ const Login = () => {
       // console.log(res.data.data)
       // )
       // .catch((err) => console.log(err))
-  
+     
+
+
+    
 
   useEffect(()=>{
-    if(cekEmail&&cekPassword){
-      navigation(`/dashboard`)
-    }else{
-      navigation(`/`)
-    }
-  },[cekEmail])
+    // if(cekEmail&&cekPassword){
+    //   navigation(`/dashboard`)
+    // }else{
+    //   navigation(`/`)
+    // }
+    // axios.post('https://voluntegreen.onrender.com/signin', async (req, res) => {
+    //   try {
+    //     const {email, password} = req.body;
+    //     const user = await user.findOne({
+    //       email
+    //     }).lean();
+
+    //     if (!user){
+    //       return res.status(403).json({
+    //         message: 'Wrong email or password.'
+    //       });
+    //     }
+    //     const passwordValid = await verifyPassword(
+    //       password,
+    //     );
+        
+    //     if (passwordValid){
+    //       const {password, bio, ...rest} =  user;
+    //       const userInfo = Object.assign({}, {...rest});
+    //       const token = createToken(userInfo);
+    //       const decodedToken = jwtDecode(token);
+    //       const expiresAt = decodedToken.exp;
+
+    //       res.session.user = userInfo;
+
+    //       res.json({
+    //         message: 'Authentication Successfull!',
+    //         token,
+    //         userInfo,
+    //         expiresAt
+    //       });
+    //     } else {
+    //       res.status(403).jsonn({
+    //         message: 'Wrong email or Password.'
+    //       });
+    //     }
+
+    //   } catch (err){
+    //     console.log(err);
+    //     return res
+    //       .status(400)
+    //       .json({message: 'Something went Wrong.'});
+    //   }
+
+    // })
+
+
+  },[])
+
+ 
+
+
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -46,17 +126,43 @@ const Login = () => {
 
   const handleBtn = async (e) => {
     e.preventDefault()
+    console.log("halo");
 
     try {
-      await axios.post('https://voluntegreen.onrender.com/signin', {
+      const respons = await axios.post('https://voluntegreen.onrender.com/signin', {
         email: email,
+        roles: roles,
         password: password
       });
-      localStorage.setItem("account", email);
-      alert("Loading");
+      console.log(respons);
+      console.log(respons.data.token);
+      console.log(respons.data.email);
+      console.log(respons.data.roles);
+      const obj = Object.values(respons.data.roles)
+      // const propertyValues = Object.values(respons.data.email);
+      console.log(obj[0]);
 
+      // console.log(respons.data.roles);
+      // console.log(respons);
+      localStorage.setItem("account", email);
+      localStorage.setItem("token", respons.data.token)
+      localStorage.setItem("roles", obj)
+
+      if(obj[0] === "63876e9ff672199d9a7a61e6"){
+        localStorage.setItem("roles", roles);
+        localStorage.setItem("account", email);
+        // console.log(roles);
+        alert("Sedang memuat, silahkan menunggu.");
+        // localStorage.setItem("pass", password);
+        navigation("/admin");
+      }else {
+        localStorage.setItem("account", email);
+        alert("Loading");
+        // localStorage.setItem("pass", password);
+        navigation("/dashboard");
+      }
       // localStorage.setItem("pass", password);
-      navigation("/dashboard");
+      // navigation("/dashboard");
     }catch(error){
       
         alert("Mohon Check kembali data Anda.");
@@ -96,13 +202,13 @@ const Login = () => {
           <div className="container-xxxl">
           <div className="row" id="logre">
           <div className="col volunteelore">
-            <h1 style={{textAlign: "center", paddingLeft: "4.6rem"}}>VolunteGreen</h1>
+            <h1 style={{textAlign: "left", paddingLeft: "5rem"}}>VolunteGreen</h1>
             {/* <img id="logre"  src="/LogresAssets/img/Mountain.jpg" /> */}
             </div>
 
-              <div className="col">
+              <div className="col justify-right formmm">
                 
-                  <form id="form" style={{paddingLeft: "9rem"}}>
+                  <form id="form" className="col formkotakk" >
                     <br/><br/>
                     <h1 className="text-center">LOGIN</h1>
                     <div className="col">

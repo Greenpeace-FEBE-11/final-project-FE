@@ -10,6 +10,8 @@ function Navbar() {
     const HandleLogout = (e) => {
         e.preventDefault()
         localStorage.removeItem("account")
+        localStorage.removeItem("token")
+        localStorage.removeItem("roles")
         // window.location.reload()
         navigation(`/`)
     };
@@ -55,20 +57,22 @@ function Navbar() {
 
              {/* <!-- Menu lainnya------------------------------- --> */}
                     <li className="nav-item dropdown akun">
-                    <Link to={"/abouut"} style={{textDecoration: 'none'}} className="nav-link navmenu">About Us</Link>
+                    <Link to={"/about"} style={{textDecoration: 'none'}} className="nav-link navmenu">About Us</Link>
                 
                     </li>
                     <li className="nav-item dropdown akun">
-                    <a className="nav-link navmenu" href="#contact">Contact Us</a>
+                    <Link to={"/contactus"} style={{textDecoration: 'none'}} className="nav-link navmenu">Contact Us</Link>
                     </li>
+
                     <li className="nav-item dropdown akun">
-                    <a className="nav-link" href="">Account</a>
-                    <img src="img/avatar.png" width="60"/>              
+
+                     <Link to={"/profile"} style={{ textDecoration: "none" }} className="nav-link" >Account
+                    <img src="img/avatar.png" width="60"/></Link>       
                     </li>
                 
                 </ul>
                 <ul className="navbar-nav navmenu1 akun">
-                    <li className="nav-item text-right dropdown "><a className="nav-link navmenu" onClick={HandleLogout}>Logout</a></li>
+                    <li className="nav-item text-center dropdown "><a className="nav-link navmenu" onClick={HandleLogout}>Logout</a></li>
                 </ul>   
                     </div>
 
