@@ -1,7 +1,7 @@
 import "/src/css/Profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import EditProfile from "./EditProfile";
@@ -15,6 +15,7 @@ const Profile = () => {
   const [noHp, setNoHp] = useState("");
   const [alamat, setAlamat] = useState("");
   const {id} =useParams("2")
+  const navigation = useNavigate()
   useEffect(()=>{
     getUserById()
   },[])
