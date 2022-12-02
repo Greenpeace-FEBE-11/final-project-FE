@@ -40,30 +40,31 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
-        namaDepan: namaDepan,
-        namaBelakang: namaBelakang,
-        email: email,
-        password: password,
-        jenisKelamin: jenisKelamin,
-        noHp: noHp,
-        alamat: alamat,
-      })
-      .then((result) => {
-        if (result.data.id == "1") {
-          axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
-            namaDepan: namaDepan,
-            namaBelakang: namaBelakang,
-            email: email,
-            password: password,
-            jenisKelamin: jenisKelamin,
-            noHp: noHp,
-            alamat: alamat,
-          });
-        }
-        console.log(result.data);
-      });
+    
+    // axios
+    //   .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
+    //     namaDepan: namaDepan,
+    //     namaBelakang: namaBelakang,
+    //     email: email,
+    //     password: password,
+    //     jenisKelamin: jenisKelamin,
+    //     noHp: noHp,
+    //     alamat: alamat,
+    //   })
+    //   .then((result) => {
+    //     if (result.data.id == "1") {
+    //       axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
+    //         namaDepan: namaDepan,
+    //         namaBelakang: namaBelakang,
+    //         email: email,
+    //         password: password,
+    //         jenisKelamin: jenisKelamin,
+    //         noHp: noHp,
+    //         alamat: alamat,
+    //       });
+    //     }
+    //     console.log(result.data);
+    //   });
   };
   return (
     <>
@@ -161,12 +162,12 @@ const Profile = () => {
                 </div>
                 <div className="text-center d-grid gap-2">
                   <br />
-                  <Link to={"/editprofile"} />
+                  
                   <button
                     type="submit"
                     className="btn btn-success"
                     onClick={handleSubmit}
-                  >
+                  ><Link to={"/editprofile"} />
                     Edit
                   </button>
                 </div>

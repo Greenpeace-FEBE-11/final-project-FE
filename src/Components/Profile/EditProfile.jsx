@@ -6,15 +6,16 @@ const EditProfile = () => {
     const [namaBelakang, setNamaBelakang] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [jenisKelamin, setJenisKelamin] = useState("");
+    const [jenisKelamin, setJenisKelamin] = useState("Laki-laki");
     const [noHp, setNoHp] = useState("");
     const [alamat, setAlamat] = useState("");
     const navigation = useNavigate()
-    const {id} =useParams()
+    
 
-  useEffect(()=>{
-    getUserById()
-  },[])
+  // useEffect(()=>{
+  //   getUserById()
+  // },[])
+    const token = localStorage.getItem("token")
 
     const handleNamaDepan = (e) => {
       setNamaDepan(e.target.value);
@@ -37,37 +38,46 @@ const EditProfile = () => {
     const handleAlamat = (e) => {
       setAlamat(e.target.value);
     };
-  
+    const {id} =useParams()
+    console.log(id)
     const handleEdit = (e) => {
       e.preventDefault();
       axios
-        .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
-          namaDepan: namaDepan,
-          namaBelakang: namaBelakang,
-          email: email,
-          password: password,
-          jenisKelamin: jenisKelamin,
-          noHp: noHp,
-          alamat: alamat,
-        })
+        .get ("https://voluntegreen.onrender.com/userprofile")
+        
         .then((result) => {
-          if (result.data.id == id) {
-            axios.post("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
-              namaDepan: namaDepan,
-              namaBelakang: namaBelakang,
-              email: email,
-              password: password,
-              jenisKelamin: jenisKelamin,
-              noHp: noHp,
-              alamat: alamat,
-            });
-          }
+
+          console.log(result);
+          console.log(id);
+          // if (result.data.id == id) {
+            // axios.post(`https://voluntegreen.onrender.com/userprofile`, {
+            //   namaDepan: namaDepan,
+            //   namaBelakang: namaBelakang,
+            //   email: email,
+            //   password: password,
+            //   jenisKelamin: jenisKelamin,
+            //   noHp: noHp,
+            //   alamat: alamat,
+            // });
+          // }
   
-          console.log(result.data);
+          
         });
     };
     const getUserById = async()=>{
-      const response = await axios.get(`https://63528ae6a9f3f34c37409536.mockapi.io/profile/${id}`);
+      axios(`https://voluntegreen.onrender.com/userprofile/${id}`,{
+        namaDepan: namaDepan,
+        namaBelakang: namaBelakang,
+        email: email,
+        password: password,
+        jenisKelamin: jenisKelamin,
+        noHp: noHp,
+        alamat: alamat,
+      })
+      .then((result)=>{
+        result.data.forEach((element))
+      })
+      const response = await axios.get(`https://voluntegreen.onrender.com/userprofile`);
       setNamaDepan(response.data.namaDepan);
       setNamaBelakang(response.data.namaBelakang);
       setEmail(response.data.email);
@@ -146,7 +156,6 @@ const EditProfile = () => {
                   <div className="col">
                     <label className="form-label">Jenis Kelamin</label>
                     <select className="jk" value={jenisKelamin} onChange={handleJenisKelamin}>
-                      <option value=""></option>
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
                     </select>
