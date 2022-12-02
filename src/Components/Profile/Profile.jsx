@@ -43,7 +43,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigation(`/profile/:id`)
+    navigation(`/editprofile/2`)
     // axios
     //   .get("https://63528ae6a9f3f34c37409536.mockapi.io/profile", {
     //     namaDepan: namaDepan,
@@ -181,7 +181,7 @@ const Profile = () => {
                     type="submit"
                     className="btn btn-success btne btn-edit"
                     onClick={handleSubmit}
-                  ><Link to={"/editprofile"} />
+                  >
                     Edit
                   </button>
                 </div>
