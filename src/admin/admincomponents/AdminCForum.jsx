@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function AdminCPengguna() {
+function AdminCForum() {
     const api_url = "https://testvoluntegreen.onrender.com/users";
     // const [apiUser, setApiUser] = useState([])
     const {_id} = useParams()
@@ -26,75 +26,7 @@ const [user, setUser] = useState('');
 useEffect(() => {
     // refreshToken();
     getUsersBE();
-    fetchData();
 }, []);
-
-
-
-// const refreshToken = async () => {
-//   try {
-//       const response = await axios.get('https://voluntegreen.onrender.com/admin');
-//       setToken(response.data.accessToken);
-//       const decoded = jwt_decode(response.data.accessToken);
-//       setName(decoded.name);
-//       setExpire(decoded.exp);
-//   } catch (error) {
-//       if (error.response) {
-//         // navigate("/");
-//       }
-//   }
-// }
-
-
-// const axiosJWT = axios.create();
-
-//   axiosJWT.interceptors.request.use(async (config) => {
-//       const currentDate = new Date();
-//       if (expire * 86400 < currentDate.getTime()) {
-//           const response = await axios.get('https://voluntegreen.onrender.com/admin');
-//           config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-//           setToken(response.data.accessToken);
-//           const decoded = jwt_decode(response.data.accessToken);
-//           setName(decoded.name);
-//           setExpire(decoded.exp);
-//       }
-//       return config;
-//   }, (error) => {
-//       return Promise.reject(error);
-//   });
-
-
-axios.interceptors.request.use(
-    config => {
-        config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-        return config;
-    },
-    error => {
-        return Promise.reject(error);
-    }
-)
-
-const fetchData = useCallback(async () => {
-    try {
-        const result = await axios.get('https://voluntegreen.onrender.com/admin')
-        setUser(result.data.data);
-    }catch (err){
-        console.log(err)
-    }
-})
-
-
-
-//   const getUsers = async () => {
-//       const response = await axiosJWT.get('https://voluntegreen.onrender.com/users', {
-//           headers: {
-//               Authorization: `Bearer ${token}`
-//           }
-//       });
-//       setApiUser(response.data);
-//   }
-
-
 
 
     
@@ -109,13 +41,13 @@ const fetchData = useCallback(async () => {
 // };
 
 //ini untuk getUser deploy Fix API
+const [postingan, setPostingan] = useState([]);
 const getUsersBE = async () => {
-    axios.get('https://voluntegreen.onrender.com/admin/')
-   .then(res => 
-   setApiUser(res.data.data),
-//    console.log(res.data.data)
-   )
-   .catch((err) => console.log(err))
+    axios('https://voluntegreen.onrender.com/userpage')
+            .then(res => {
+                console.log(res.data.data),
+                setPostingan(res.data.data)
+            }).catch((err) => console.log(err))
 };
 
     // useEffect(() => {
@@ -136,7 +68,7 @@ const getUsersBE = async () => {
     // ini untuk delete fix API
     const deleteUser = async (_id) => {
         try {
-            await axios.delete(`https://voluntegreen.onrender.com/admin/${_id}`);
+            await axios.delete(`https://voluntegreen.onrender.com/userpage/${_id}`);
             getUsersBE();
             console.log(_id + " has been deleted")
         } catch (error){
@@ -158,36 +90,30 @@ const getUsersBE = async () => {
     return (
     <>
     
-      {/* <!-- Begin Page Content --> */}
-
-    <center>
     <div className="crudd">
 
-        {/* <!-- Page Heading --> */}
         <div className="ms-4">
-            <h1 className="text-gray-800">Pengguna</h1>
+            <h1 className="text-gray-800">Forum Activity</h1>
         </div>
 
 
-        {/* <!-- /.container-fluid --> */}
         <table className="table  table-columns my-table tablee">
             <thead >
             <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                {/* <th>Password</th> */}
-                <th>Action</th>
+                <th>Title</th>
+                <th>CreatedAt</th>
+                <th>Actions</th>
             </tr>
             </thead>
-            {apiUser.map((item, index) => ( 
+            {postingan.map((item, index) => ( 
             <tbody  key={index}>
             <tr>
                 <td>{item._id}</td>
-                <td>{item.username}</td>
-                <td>{item.email}</td>
+                <td>{item.title}</td>
+                <td>{item.createdAt}</td>
                 {/* <td>123</td> */}
-                <td><a onClick={() => deleteUser(item._id)}><i className="fa fa-trash" aria-hidden="true" title='Delete Akun'></i></a></td>
+                <td><a onClick={() => deleteUser(item._id)}><i className="fa fa-trash" aria-hidden="true" title='Delete Post'></i></a></td>
                 
             </tr>
             {/* <tr>
@@ -204,10 +130,10 @@ const getUsersBE = async () => {
     </table>
 
 </div>
-</center>
+
 
     </>
     )
 }
 
-export default AdminCPengguna
+export default AdminCForum

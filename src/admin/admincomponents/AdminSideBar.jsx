@@ -11,11 +11,13 @@ function AdminSideBar() {
         localStorage.removeItem("account")
         localStorage.removeItem("token")
         localStorage.removeItem("roles")
+        localStorage.removeItem("username")
+        localStorage.removeItem("geo-location")
         // window.location.reload()
         navigation(`/`)
     };
 
-  return (
+return (
 
 
     
@@ -61,6 +63,15 @@ function AdminSideBar() {
                     <span>Manage User Account </span>
                 </a>
             </li></Link>
+            
+            <Link to="/admin-forum" style={{textDecoration: 'none'}}>
+            <li className="nav-item">
+                <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i className="fas fa-fw fa-cog"></i>
+                    <span>Manage Forum Post </span>
+                </a>
+            </li></Link>
 
             
            
@@ -87,10 +98,10 @@ function AdminSideBar() {
 
 
             {/* <!-- Sidebar Message --> */}
-            <div className="sidebar-card d-lg-flex">
+            <div className="sidebar-card d-lg-flex logoutAdmin">
                 {/* <img className="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..."/> */}
                 <p className="text-center mb-2">Thankyou, see you again!</p>
-                <a onClick={HandleLogout} className="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Logout</a>
+                <a onClick={HandleLogout} className="btn btn-success btn-sm " href="https://startbootstrap.com/theme/sb-admin-pro">Logout</a>
             </div>
 
         </ul>
