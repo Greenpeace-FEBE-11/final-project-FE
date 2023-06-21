@@ -34,7 +34,7 @@ const Register = () => {
        e.preventDefault();
 
       try {
-        await axios.post('https://voluntegreen.netlify.app/signup', {
+        await axios.post('https://voluntegreen.onrender.com/signup', {
           
             username: username,
             email: email,
